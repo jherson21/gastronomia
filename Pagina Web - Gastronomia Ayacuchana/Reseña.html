@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/a4d2b7b31e.js" crossorigin="anonymous"></script>
+  <meta name="KeyWords" content="Los mejores platos de ayacucho">
+  <meta name="Description" content="Ayacucho Gastronomic la mejor pagina de gastronómica!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <title> Restaurantes - Ayacucho Gastronomic</title>
+
+</head>
+
+<body class="body-Restaurantes">
+
+  <header>
+    <nav class="navegacion">
+      <a href="Menú.html"> <img class="logo"
+          src="https://static.vecteezy.com/system/resources/previews/034/901/784/original/ag-monogram-logo-esport-or-gaming-initial-concept-vector.jpg"
+          alt="Logo"> </a>
+      <ul>
+        <li> <a href="Menú.html"> Inicio </a></li>
+        <li> <a href="Gastronomia.html"> Gastronomia </a> </li>
+        <li><a href="Restaurantes.html"> Restaurantes</a></li>
+        <li> <a href="Reseña.html"> Reseña </a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="bodyy">
+    <div class="review-container">
+      <div class="header">
+        <h2>¿Cómo fue tu experiencia en la pagina Ayacucho Gastronomic?</h2>
+        <p>Tu opinión nos ayudara a seguir mejorando</p>
+      </div>
+
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="name">Nombre completo</label>
+          <input type="text" id="name" class="input-field" placeholder="Escribe tu nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label>¿Qué calificación nos darías?</label>
+          <div class="stars" id="ratingStars">
+            <span class="star" data-value="1"></span>
+            <span class="star" data-value="2"></span>
+            <span class="star" data-value="3"></span>
+            <span class="star" data-value="4"></span>
+            <span class="star" data-value="5"></span>
+          </div>
+          <div class="emoji-rating">
+            <span>Malo</span>
+            <span>Regular</span>
+            <span>Bueno</span>
+            <span>Muy bueno</span>
+            <span>Excelente</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" class="input-field" placeholder="ejemplo@correo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="comment">Cuentanos sobre tu experiencia usando esta pagina</label>
+          <textarea id="comment" class="input-field" placeholder="Escribe tu comentario aquí..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar Reseña</button>
+      </form>
+    </div>
+
+    <script>
+      let currentRating = 0;
+      const stars = document.querySelectorAll('.star');
+
+      stars.forEach(star => {
+        star.addEventListener('mouseover', function () {
+          const rating = this.dataset.value;
+          updateStars(rating);
+        });
+
+        star.addEventListener('mouseout', function () {
+          updateStars(currentRating);
+        });
+
+        star.addEventListener('click', function () {
+          currentRating = this.dataset.value;
+          updateStars(currentRating);
+        });
+      });
+
+      function updateStars(rating) {
+        stars.forEach(star => {
+          star.classList.toggle('active', star.dataset.value <= rating);
+        });
+      }
+
+      document.getElementById('reviewForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (currentRating === 0) {
+          alert('Por favor, selecciona una calificación');
+          return;
+        }
+
+        const formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          rating: currentRating,
+          comment: document.getElementById('comment').value
+        };
+
+        console.log('Datos de la reseña:', formData);
+        alert('¡Gracias por tu reseña!');
+
+        // Resetear el formulario
+        this.reset();
+        currentRating = 0;
+        updateStars(0);
+      });
+    </script>
+  </div>
+
+
+
+  <footer>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-pinterest"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <br><br>
+    Derechos resevados @2024
+
+  </footer>
+
+</body>
+
+
+</html>
